@@ -1,0 +1,25 @@
+{
+	"users": [
+		{
+			"id":	0,
+			"name": "Rubén García",
+			"type": "admin",
+			"username": "ruben",
+			"password": "rubpass"
+		},
+		{
+			"id":	1,
+			"name": "Rafael Martín",
+			"type": "technician",
+			"username": "rafael",
+			"password": "rafpass"
+		},
+		{
+			"id":	2,
+			"name": "Sarah López",
+			"type": "technician",
+			"username": "sarah",
+			"password": "sarpass"
+		}
+	]
+}

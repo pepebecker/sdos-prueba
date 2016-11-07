@@ -9,11 +9,15 @@
 #import "TechnicianSelectionVC.h"
 
 @interface TechnicianSelectionVC ()
-
 @property (nonatomic, strong) NSMutableDictionary *task;
-@property (nonatomic, strong) NSMutableArray *technicans;
+@property (nonatomic, strong) NSMutableArray *technicians;
 @property (nonatomic, strong) NSMutableArray *selectedTechinicians;
-//@property (nonatomic, strong) NSMutableArray *techiniciansWhoHaveStarted;
+@property (nonatomic, strong) UIImage *inprogressImage;
+
+// Only select one technician
+@property (nonatomic, strong) NSMutableDictionary *lastTechnician;
+@property (nonatomic, strong) UITableViewCell *lastTechnicianCell;
+@property (nonatomic, strong) NSIndexPath *lastTechnicianIndex;
 
 @end
 
@@ -22,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.inprogressImage = [UIImage imageNamed:@"inprogress"];
     
     UIBarButtonSystemItem style = UIBarButtonSystemItemSave;
     SEL selector = @selector(saveSelection);
@@ -37,14 +43,47 @@
     
     // Technician
     NSArray *users = [JSONManager loadJSONArrayFromDocuments:@"users" withKey:@"users"];
+    NSArray *tasks = [JSONManager loadJSONArrayFromDocuments:@"tasks" withKey:@"tasks"];
     
-    self.technicans = [[NSMutableArray alloc] init];
+    self.technicians = [[NSMutableArray alloc] init];
     
-    for (NSDictionary *user in users)
+    BOOL started = [self.task[@"started"] count] > 0;
+    
+    if (started)
     {
-        if ([user[@"type"] isEqualToString:@"technician"])
+        for (NSDictionary *user in users)
         {
-            [self.technicans addObject:user];
+            if ([self.task[@"technicians"] containsObject:user[@"id"]])
+            {
+                [self.technicians addObject:user];
+            }
+        }
+    }
+    else
+    {
+        for (NSDictionary *user in users)
+        {
+            if ([user[@"type"] isEqualToString:@"technician"])
+            {
+                if ([user[@"field"] isEqualToString:self.task[@"type"]])
+                {
+                    NSMutableDictionary *newUser = [[NSMutableDictionary alloc] initWithDictionary:user];
+                    
+                    NSInteger hours = 0;
+                    
+                    for (NSDictionary *task in tasks)
+                    {
+                        if ([task[@"technicians"] containsObject:user[@"id"]])
+                        {
+                            hours += [task[@"hours"] intValue];
+                        }
+                    }
+                    
+                    [newUser setObject:[NSNumber numberWithInt:hours] forKey:@"hours"];
+                    
+                    [self.technicians addObject:newUser];
+                }
+            }
         }
     }
 }
@@ -61,7 +100,7 @@
     [self performSegueWithIdentifier:@"updateTask" sender:self];
 }
 
-#pragma mark - Table view data source
+#pragma mark - TableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -70,32 +109,44 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.technicans.count;
+    return self.technicians.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"technicianCell" forIndexPath:indexPath];
     
-    NSDictionary *techinician = self.technicans[indexPath.row];
-    NSString *tecName = [techinician objectForKey:@"name"];
-    NSNumber *tecID = [techinician objectForKey:@"id"];
+    NSMutableDictionary *technician = self.technicians[indexPath.row];
+    NSString *tecName = [technician objectForKey:@"name"];
+    NSNumber *tecID = [technician objectForKey:@"id"];
     
     cell.textLabel.text = tecName;
     
     if ([self.selectedTechinicians containsObject:tecID])
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        
+        if (self.lastTechnicianCell == NULL) {
+            self.lastTechnician = technician;
+            self.lastTechnicianCell = cell;
+            self.lastTechnicianIndex = indexPath;
+        }
     }
     
-    NSArray *started = [self.task objectForKey:@"started"];
+    BOOL started = [[self.task objectForKey:@"started"] containsObject:tecID];
     
-    if ([started containsObject:tecID])
+    if (started)
     {
-        cell.detailTextLabel.text = @"comenzado";
-        cell.detailTextLabel.textColor = [UIColor redColor];
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.detailTextLabel.text = @"";
+        cell.accessoryView = [[UIImageView alloc] initWithImage:self.inprogressImage];
         cell.userInteractionEnabled = NO;
+    }
+    else
+    {
+        NSInteger hours = [technician[@"hours"] intValue];
+        
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d h", hours];
+        cell.detailTextLabel.textColor = [UIColor blackColor];
     }
     
     return cell;
@@ -103,23 +154,65 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *technician = [self.technicans objectAtIndex:indexPath.row];
-    NSNumber *tecID = [technician objectForKey:@"id"];
-    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    NSMutableDictionary *technician = self.technicians[indexPath.row];
+    NSNumber *tecID = technician[@"id"];
+    
+//    if ([self.task[@"started"] count] > 0) {
+//        return;
+//    }
+    
+    if (self.lastTechnician && ![self.lastTechnician[@"id"] isEqual:tecID])
+    {
+        [self.selectedTechinicians removeObject:self.lastTechnician[@"id"]];
+        
+        NSInteger tecHours = [self.lastTechnician[@"hours"] intValue];
+        NSInteger taskHours = [self.task[@"hours"] intValue];
+        
+        tecHours -= taskHours;
+        
+        self.lastTechnician[@"hours"] = [NSNumber numberWithInt:tecHours];
+        self.lastTechnicianCell.detailTextLabel.text = [NSString stringWithFormat:@"%d h", tecHours];
+        
+        self.lastTechnicianCell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    NSInteger tecHours = [technician[@"hours"] intValue];
+    NSInteger taskHours = [self.task[@"hours"] intValue];
     
     if (cell.accessoryType == UITableViewCellAccessoryCheckmark)
     {
         cell.accessoryType = UITableViewCellAccessoryNone;
         [self.selectedTechinicians removeObject:tecID];
+        
+        tecHours -= taskHours;
     }
     else
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
         [self.selectedTechinicians addObject:tecID];
+        
+        tecHours += taskHours;
     }
     
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d h", tecHours];
+    
+    technician[@"hours"] = [NSNumber numberWithInt:tecHours];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (self.lastTechnician && [self.lastTechnician[@"id"] isEqual:tecID]) {
+        self.lastTechnician = NULL;
+        self.lastTechnicianCell = NULL;
+        self.lastTechnicianIndex = NULL;
+    }
+    else
+    {
+        self.lastTechnician = technician;
+        self.lastTechnicianCell = cell;
+        self.lastTechnicianIndex = indexPath;
+    }
 }
 
 @end

@@ -12,6 +12,4 @@
 
 @interface AdminTableVC : UITableViewController<MGSwipeTableCellDelegate>
 
-@property (nonatomic, strong) NSMutableArray *tasks;
-
 @end

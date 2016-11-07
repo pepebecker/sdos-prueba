@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateTaskVC : UITableViewController
+@interface CreateTaskVC : UITableViewController<UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *titleField;
 @property (strong, nonatomic) IBOutlet UITextField *typeField;

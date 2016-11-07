@@ -29,82 +29,109 @@
     [self.navigationItem setTitle:[self.task objectForKey:@"title"]];
     
     self.typeLabel.text = [self.task objectForKey:@"type"];
-    self.duractionLabel.text = [self.task objectForKey:@"duration"];
+    
+    NSInteger hours = [self.task[@"hours"] intValue];
+    NSString *hoursString = (hours == 1?@"hora":@"horas");
+    
+    self.durationLabel.text = [NSString stringWithFormat:@"%d %@", hours, hoursString];
+    
     self.descriptionLabel.text = [self.task objectForKey:@"description"];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:2];
+    BOOL started = [[self.task objectForKey:@"started"] containsObject:[self.user objectForKey:@"id"]];
+    BOOL completed = [[self.task valueForKey:@"completed"] isEqual:@1];
     
-    NSArray *started = [self.task objectForKey:@"started"];
-    
-    NSLog(@"SE 234 %@", [defaults objectForKey:@"task"]);
-    
-    NSLog(@"%@", [self.task objectForKey:@"started"]);
-    
-    if ([started containsObject:[self.user objectForKey:@"id"]]) {
-        NSLog(@"Yes");
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        cell.textLabel.text = @"Terminar";
+    if (started)
+    {
+        self.buttonCell.textLabel.text = @"Terminar";
+        self.buttonCell.textLabel.textColor = [UIColor redColor];
     }
     
-    NSNumber *completed = [self.task objectForKey:@"completed"];
-    
-    if ([completed isEqual:@1]) {
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        cell.textLabel.text = @"Terminado";
-        cell.textLabel.textColor = [UIColor redColor];
-        cell.userInteractionEnabled = NO;
+    if (completed)
+    {
+        self.buttonCell.textLabel.text = @"Terminado";
+        self.buttonCell.textLabel.textColor = [UIColor darkTextColor];
+        self.buttonCell.userInteractionEnabled = NO;
     }
 }
 
-- (void)saveTask {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:self.task forKey:@"task"];
-    [defaults synchronize];
+- (NSArray*)replaceTaskInList:(NSArray*)tasks withTask:(NSDictionary*)task {
+    NSMutableArray *newTasks = [[NSMutableArray alloc] initWithArray:tasks];
     
-    NSLog(@"SE %@", [defaults objectForKey:@"task"][@"started"]);
-    
-    NSLog(@"%@", self.task[@"started"]);
-    
-    NSArray *loadedTasks = [JSONManager loadJSONArrayFromDocuments:@"tasks" withKey:@"tasks"];
-    NSMutableArray *tasks = [[NSMutableArray alloc] initWithArray:loadedTasks];
-    
-    for (int i = 0; i < tasks.count; i++) {
-        NSDictionary *task = [tasks objectAtIndex:i];
-        if ([[task objectForKey:@"id"] isEqual:[self.task objectForKey:@"id"]]) {
-            [tasks replaceObjectAtIndex:i withObject:self.task];
-            NSLog(@"Task replaced");
+    for (int i = 0; i < tasks.count; i++)
+    {
+        NSDictionary *t = [tasks objectAtIndex:i];
+        if ([[t objectForKey:@"id"] isEqual:[task objectForKey:@"id"]])
+        {
+            [newTasks replaceObjectAtIndex:i withObject:task];
             break;
         }
     }
     
-    [JSONManager writeArray:tasks toJSONFile:@"tasks" withkey:@"tasks"];
+    return newTasks;
+}
+
+- (void)saveTask
+{
+    NSLog(@"Save Task");
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:self.task forKey:@"task"];
+    [defaults synchronize];
+    
+    NSArray *tasks = [JSONManager loadJSONArrayFromDocuments:@"tasks" withKey:@"tasks"];
+    
+    NSArray *updatedTasks = [self replaceTaskInList:tasks withTask:self.task];
+    
+    [JSONManager writeArray:updatedTasks toJSONFile:@"tasks" withkey:@"tasks"];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    BOOL completed = [[self.task valueForKey:@"completed"] isEqual:@1];
+    
+    if (completed)
+    {
+        return 4;
+    }
+    else
+    {
+        return 3;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 2) {
+    if (indexPath.section == 2)
+    {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
         if ([cell.textLabel.text isEqualToString:@"Comenzar"])
         {
-            cell.textLabel.text = @"Terminar";
-            
             NSMutableArray *started = [[NSMutableArray alloc] initWithArray:[self.task objectForKey:@"started"]];
             [started addObject:[self.user objectForKey:@"id"]];
             [self.task setObject:started forKey:@"started"];
             
             [self saveTask];
+            
+            [self.navigationController popViewControllerAnimated:YES];
         }
         else if ([cell.textLabel.text isEqualToString:@"Terminar"])
         {
-            cell.textLabel.text = @"Terminado";
-            cell.textLabel.textColor = [UIColor redColor];
-            cell.userInteractionEnabled = NO;
-            
             [self.task setObject:@1 forKey:@"completed"];
             
             [self saveTask];
+            
+            [self.navigationController popViewControllerAnimated:YES];
         }
+    }
+    else if (indexPath.section == 3)
+    {
+        NSMutableArray *technicians = [[NSMutableArray alloc] initWithArray:[self.task objectForKey:@"technicians"]];
+        [technicians removeObject:[self.user objectForKey:@"id"]];
+        [self.task setObject:technicians forKey:@"technicians"];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:self.task forKey:@"task"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [self performSegueWithIdentifier:@"deletedTask" sender:self];
     }
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];

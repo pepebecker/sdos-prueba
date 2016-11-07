@@ -1,5 +1,5 @@
 //
-//  ProfilVC.h
+//  ProfileVC.h
 //  SDOS Prueba
 //
 //  Created by Pepe Becker on 04/11/2016.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProfilVC : UIViewController
+@interface ProfileVC : UIViewController
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *typeLabel;

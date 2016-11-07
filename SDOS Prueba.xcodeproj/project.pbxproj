@@ -20,10 +20,11 @@
 		B1257FA91DCE6E670024B4EB /* CreateTaskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1257F9B1DCE6E670024B4EB /* CreateTaskVC.m */; };
 		B1257FAA1DCE6E670024B4EB /* JSONManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1257F9D1DCE6E670024B4EB /* JSONManager.m */; };
 		B1257FAB1DCE6E670024B4EB /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1257F9F1DCE6E670024B4EB /* LoginVC.m */; };
-		B1257FAC1DCE6E670024B4EB /* ProfilVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1257FA11DCE6E670024B4EB /* ProfilVC.m */; };
+		B1257FAC1DCE6E670024B4EB /* ProfileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1257FA11DCE6E670024B4EB /* ProfileVC.m */; };
 		B1257FAD1DCE6E670024B4EB /* TaskDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1257FA31DCE6E670024B4EB /* TaskDetailVC.m */; };
 		B1257FAE1DCE6E670024B4EB /* TechnicianSelectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1257FA51DCE6E670024B4EB /* TechnicianSelectionVC.m */; };
 		B1257FAF1DCE6E670024B4EB /* TechnicianTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1257FA71DCE6E670024B4EB /* TechnicianTableVC.m */; };
+		B19E69BD1DCFD9B7007DB781 /* AdminTaskDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B19E69BC1DCFD9B7007DB781 /* AdminTaskDetails.m */; };
 		B1E97F781DCE6FD900E1BA24 /* tasks.json in Resources */ = {isa = PBXBuildFile; fileRef = B1E97F761DCE6FD900E1BA24 /* tasks.json */; };
 		B1E97F791DCE6FD900E1BA24 /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = B1E97F771DCE6FD900E1BA24 /* users.json */; };
 		F35641EE76A7301881CEE858 /* libPods-SDOS PruebaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B32F49C23B7725FFCF18843 /* libPods-SDOS PruebaTests.a */; };
@@ -75,14 +76,17 @@
 		B1257F9D1DCE6E670024B4EB /* JSONManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONManager.m; sourceTree = "<group>"; };
 		B1257F9E1DCE6E670024B4EB /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		B1257F9F1DCE6E670024B4EB /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
-		B1257FA01DCE6E670024B4EB /* ProfilVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilVC.h; sourceTree = "<group>"; };
-		B1257FA11DCE6E670024B4EB /* ProfilVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilVC.m; sourceTree = "<group>"; };
+		B1257FA01DCE6E670024B4EB /* ProfileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileVC.h; sourceTree = "<group>"; };
+		B1257FA11DCE6E670024B4EB /* ProfileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileVC.m; sourceTree = "<group>"; };
 		B1257FA21DCE6E670024B4EB /* TaskDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetailVC.h; sourceTree = "<group>"; };
 		B1257FA31DCE6E670024B4EB /* TaskDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailVC.m; sourceTree = "<group>"; };
 		B1257FA41DCE6E670024B4EB /* TechnicianSelectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TechnicianSelectionVC.h; sourceTree = "<group>"; };
 		B1257FA51DCE6E670024B4EB /* TechnicianSelectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TechnicianSelectionVC.m; sourceTree = "<group>"; };
 		B1257FA61DCE6E670024B4EB /* TechnicianTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TechnicianTableVC.h; sourceTree = "<group>"; };
 		B1257FA71DCE6E670024B4EB /* TechnicianTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TechnicianTableVC.m; sourceTree = "<group>"; };
+		B19425521DD0157800F0E9B5 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B19E69BB1DCFD9B7007DB781 /* AdminTaskDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminTaskDetails.h; sourceTree = "<group>"; };
+		B19E69BC1DCFD9B7007DB781 /* AdminTaskDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdminTaskDetails.m; sourceTree = "<group>"; };
 		B1E97F761DCE6FD900E1BA24 /* tasks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tasks.json; sourceTree = "<group>"; };
 		B1E97F771DCE6FD900E1BA24 /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
 		BE7D107481220687636B8277 /* Pods-SDOS PruebaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDOS PruebaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDOS PruebaUITests/Pods-SDOS PruebaUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -162,14 +166,14 @@
 				B1257F961DCE6E050024B4EB /* AppDelegate.m */,
 				B1257F9E1DCE6E670024B4EB /* LoginVC.h */,
 				B1257F9F1DCE6E670024B4EB /* LoginVC.m */,
-				B1257FA01DCE6E670024B4EB /* ProfilVC.h */,
-				B1257FA11DCE6E670024B4EB /* ProfilVC.m */,
+				B1257FA01DCE6E670024B4EB /* ProfileVC.h */,
+				B1257FA11DCE6E670024B4EB /* ProfileVC.m */,
 				B1257FB01DCE6E790024B4EB /* Admin */,
 				B1257FB11DCE6E880024B4EB /* Technician */,
 				B119AD2A1DCE6CE600409CB1 /* Main.storyboard */,
 				B119AD031DCE6C5500409CB1 /* LaunchScreen.storyboard */,
-				B1E97F761DCE6FD900E1BA24 /* tasks.json */,
 				B1E97F771DCE6FD900E1BA24 /* users.json */,
+				B1E97F761DCE6FD900E1BA24 /* tasks.json */,
 				B119AD011DCE6C5500409CB1 /* Assets.xcassets */,
 				B119AD061DCE6C5500409CB1 /* Info.plist */,
 				B119ACF51DCE6C5500409CB1 /* Supporting Files */,
@@ -210,6 +214,8 @@
 				B1257F991DCE6E670024B4EB /* AdminTableVC.m */,
 				B1257F9A1DCE6E670024B4EB /* CreateTaskVC.h */,
 				B1257F9B1DCE6E670024B4EB /* CreateTaskVC.m */,
+				B19E69BB1DCFD9B7007DB781 /* AdminTaskDetails.h */,
+				B19E69BC1DCFD9B7007DB781 /* AdminTaskDetails.m */,
 				B1257FA41DCE6E670024B4EB /* TechnicianSelectionVC.h */,
 				B1257FA51DCE6E670024B4EB /* TechnicianSelectionVC.m */,
 			);
@@ -315,6 +321,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = JN2RWKARAM;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					B119AD0A1DCE6C5500409CB1 = {
 						CreatedOnToolsVersion = 8.1;
@@ -523,10 +534,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1257FAD1DCE6E670024B4EB /* TaskDetailVC.m in Sources */,
-				B1257FAC1DCE6E670024B4EB /* ProfilVC.m in Sources */,
+				B1257FAC1DCE6E670024B4EB /* ProfileVC.m in Sources */,
 				B1257F971DCE6E050024B4EB /* AppDelegate.m in Sources */,
 				B1257FA91DCE6E670024B4EB /* CreateTaskVC.m in Sources */,
 				B1257FAB1DCE6E670024B4EB /* LoginVC.m in Sources */,
+				B19E69BD1DCFD9B7007DB781 /* AdminTaskDetails.m in Sources */,
 				B119ACF71DCE6C5500409CB1 /* main.m in Sources */,
 				B1257FAA1DCE6E670024B4EB /* JSONManager.m in Sources */,
 				B1257FAE1DCE6E670024B4EB /* TechnicianSelectionVC.m in Sources */,
@@ -571,6 +583,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B119AD041DCE6C5500409CB1 /* Base */,
+				B19425521DD0157800F0E9B5 /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -590,6 +603,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -639,6 +653,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "JSONManager.h"
 
-@interface LoginVC : UIViewController
+@interface LoginVC : UIViewController<UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *usernameField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;

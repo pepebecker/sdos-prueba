@@ -1,18 +1,18 @@
 //
-//  ProfilVC.m
+//  ProfileVC.m
 //  SDOS Prueba
 //
 //  Created by Pepe Becker on 04/11/2016.
 //  Copyright © 2016 Pepe Becker. All rights reserved.
 //
 
-#import "ProfilVC.h"
+#import "ProfileVC.h"
 
-@interface ProfilVC ()
+@interface ProfileVC ()
 
 @end
 
-@implementation ProfilVC
+@implementation ProfileVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,8 +22,9 @@
     
     NSString *readableType = @"Administrador";
     
-    if ([user[@"type"] isEqualToString:@"technician"]) {
-        readableType = @"Técnico";
+    if ([user[@"type"] isEqualToString:@"technician"])
+    {
+        readableType = user[@"field"];
     }
     
     [self.nameLabel setText:user[@"name"]];

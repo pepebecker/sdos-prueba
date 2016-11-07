@@ -2,43 +2,33 @@
 	"tasks": [
 		{
 			"id": 0,
-			"title": "Reposicionar 1 -> 3",
-			"type": "Reponedor",
-			"duration": "3 horas",
+			"title": "Reposicionar productos",
+			"type": "Logística",
+			"hours": "4",
 			"description": "Reposicionar todos los productos de la primera estantería a la tercera estantería.",
-			"technicians": [2],
-			"started": [2],
+			"technicians": [1],
+			"started": [1],
 			"completed": 0
 		},
 		{
 			"id": 1,
-			"title": "Descargue de camión",
-			"type": "Cobrar",
-			"duration": "1 hora",
-			"description": "Descargue todos los productos del camión.",
-			"technicians": [1],
+			"title": "Vender productos",
+			"type": "Venta",
+			"hours": "6",
+			"description": "Vende todos los productos.",
+			"technicians": [3],
 			"started": [],
 			"completed": 0
 		},
 		{
 			"id": 2,
-			"title": "Envolver -> 2",
-			"type": "Envolver",
-			"duration": "2 horas",
-			"description": "Envolver todos los productos de la segunda estantería.",
-			"technicians": [2],
-			"started": [2],
-			"completed": 1
-		},
-		{
-			"id": 3,
-			"title": "Cargue al camión",
-			"type": "Cobrar",
-			"duration": "1 hora",
-			"description": "Cargue todos los productos envueltos en el camión.",
-			"technicians": [1, 2],
+			"title": "Vender más productos",
+			"type": "Venta",
+			"hours": "3",
+			"description": "Vende todos los productos.",
+			"technicians": [3],
 			"started": [],
 			"completed": 0
-		},
+		}
 	]
 }

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "JSONManager.h"
+#import "MGSwipeTableCell.h"
 
-@interface TechnicianTableVC : UITableViewController
+@interface TechnicianTableVC : UITableViewController<MGSwipeTableCellDelegate>
 
 @end

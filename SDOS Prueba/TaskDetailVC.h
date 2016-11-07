@@ -12,7 +12,8 @@
 @interface TaskDetailVC : UITableViewController
 
 @property (strong, nonatomic) IBOutlet UILabel *typeLabel;
-@property (strong, nonatomic) IBOutlet UILabel *duractionLabel;
+@property (strong, nonatomic) IBOutlet UILabel *durationLabel;
 @property (strong, nonatomic) IBOutlet UITextView *descriptionLabel;
+@property (strong, nonatomic) IBOutlet UITableViewCell *buttonCell;
 
 @end

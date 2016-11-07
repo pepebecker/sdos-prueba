@@ -12,6 +12,10 @@
 {
     BOOL didCreateNewTask;
 }
+
+@property (nonatomic, strong) NSMutableArray *tasks;
+@property (nonatomic, strong) UIImage *doneImage;
+
 @end
 
 @implementation AdminTableVC
@@ -19,6 +23,22 @@
 -(IBAction)prepareForCancelNewTask:(UIStoryboardSegue *)segue
 {
     NSLog(@"Cancel new task");
+}
+
+-(IBAction)prepareForAdminDeleteTask:(UIStoryboardSegue *)segue
+{
+    NSLog(@"Delete task");
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *task = [defaults objectForKey:@"task"];
+    NSInteger taskIndex = [[defaults objectForKey:@"taskIndex"] intValue];
+    
+    [self.tasks removeObject:task];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:taskIndex inSection:0];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [JSONManager writeArray:self.tasks toJSONFile:@"tasks" withkey:@"tasks"];
 }
 
 -(IBAction)prepareForSaveNewTask:(UIStoryboardSegue *)segue
@@ -62,6 +82,7 @@
 {
     [super viewDidLoad];
     
+    self.doneImage = [UIImage imageNamed:@"done"];
     self.tasks = [[NSMutableArray alloc] initWithArray:[JSONManager loadJSONArrayFromDocuments:@"tasks" withKey:@"tasks"]];
 }
 
@@ -101,33 +122,43 @@
     
     cell.textLabel.text = task[@"title"];
     
-    NSNumber *completed = [task valueForKey:@"completed"];
+    BOOL completed = [[task valueForKey:@"completed"] isEqual:@1];
     
-    if ([completed isEqual:@0])
+    if (completed)
     {
-        cell.detailTextLabel.text = task[@"duration"];
+        cell.detailTextLabel.text = @"";
+        cell.accessoryView = [[UIImageView alloc] initWithImage:self.doneImage];
     }
     else
     {
-        cell.detailTextLabel.text = @"terminado";
-        cell.detailTextLabel.textColor = [UIColor redColor];
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        NSInteger hours = [task[@"hours"] intValue];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%d h", hours];
+        cell.detailTextLabel.textColor = [UIColor blackColor];
     }
     
-    MGSwipeButton *deleteButton = [MGSwipeButton buttonWithTitle:@"Borrar" backgroundColor:[UIColor redColor]];
+    MGSwipeButton *deleteButton = [MGSwipeButton buttonWithTitle:@"Eliminar" backgroundColor:[UIColor redColor]];
     
     cell.rightButtons = @[deleteButton];
     cell.rightExpansion.buttonIndex = 0;
     cell.rightExpansion.fillOnTrigger = TRUE;
     cell.rightSwipeSettings.transition = MGSwipeTransitionDrag;
+    
+    MGSwipeButton *infoButton = [MGSwipeButton buttonWithTitle:@"Detalles" backgroundColor:self.view.tintColor];
+    
+    cell.leftButtons = @[infoButton];
+    cell.leftExpansion.buttonIndex = 0;
+    cell.leftExpansion.fillOnTrigger = TRUE;
+    cell.leftSwipeSettings.transition = MGSwipeTransitionDrag;
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSDictionary *task = [self.tasks objectAtIndex:indexPath.row];
+    BOOL completed = [[task valueForKey:@"completed"] isEqual:@1];
     
-    if ([cell.detailTextLabel.text isEqualToString:@"terminado"])
+    if (completed)
     {
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
@@ -145,13 +176,27 @@
 
 - (BOOL)swipeTableCell:(MGSwipeTableCell *)cell tappedButtonAtIndex:(NSInteger)index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion
 {
-    if (index == 0) {
+    if (direction == MGSwipeDirectionRightToLeft)
+    {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         [self.tasks removeObjectAtIndex:indexPath.row];
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         
         [JSONManager writeArray:self.tasks toJSONFile:@"tasks" withkey:@"tasks"];
     }
+    
+    if (direction == MGSwipeDirectionLeftToRight)
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:self.tasks[indexPath.row] forKey:@"task"];
+        [defaults setObject:[NSNumber numberWithInt:indexPath.row] forKey:@"taskIndex"];
+        [defaults synchronize];
+        
+        [self performSegueWithIdentifier:@"showTask" sender:self];
+    }
+    
     return YES;
 }
 

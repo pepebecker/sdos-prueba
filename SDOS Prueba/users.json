@@ -11,6 +11,7 @@
 			"id":	1,
 			"name": "Rafael Martín",
 			"type": "technician",
+			"field": "Logística",
 			"username": "rafael",
 			"password": "rafpass"
 		},
@@ -18,8 +19,89 @@
 			"id":	2,
 			"name": "Sarah López",
 			"type": "technician",
+			"field": "Seguridad",
 			"username": "sarah",
 			"password": "sarpass"
-		}
+		},
+		{
+			"id":	3,
+			"name": "Yesenia Gil",
+			"type": "technician",
+			"field": "Venta",
+			"username": "yesenia",
+			"password": "yespass"
+		},
+		{
+			"id":	4,
+			"name": "Diego Pavon",
+			"type": "technician",
+			"field": "Logística",
+			"username": "diego",
+			"password": "diepass"
+		},
+		{
+			"id":	5,
+			"name": "Martin Remigio",
+			"type": "technician",
+			"field": "Seguridad",
+			"username": "martin",
+			"password": "marpass"
+		},
+		{
+			"id":	6,
+			"name": "Sofia Alonzo",
+			"type": "technician",
+			"field": "Venta",
+			"username": "sofia",
+			"password": "sofpass"
+		},
+		{
+			"id":	7,
+			"name": "Pedro Fulgencio",
+			"type": "technician",
+			"field": "Logística",
+			"username": "pedro",
+			"password": "pedpass"
+		},
+		{
+			"id":	8,
+			"name": "Linda Baltodano",
+			"type": "technician",
+			"field": "Educación",
+			"username": "linda",
+			"password": "linpass"
+		},
+		{
+			"id":	9,
+			"name": "Hermosa Canizales",
+			"type": "technician",
+			"field": "Venta",
+			"username": "hermosa",
+			"password": "herpass"
+		},
+		{
+			"id":	10,
+			"name": "Julian Montalbo",
+			"type": "technician",
+			"field": "Seguridad",
+			"username": "julian",
+			"password": "julpass"
+		},
+		{
+			"id":	11,
+			"name": "Felipe Alegria",
+			"type": "technician",
+			"field": "Educación",
+			"username": "felipe",
+			"password": "felpass"
+		},
+		{
+			"id":	12,
+			"name": "Gabriel Picon",
+			"type": "technician",
+			"field": "Educación",
+			"username": "gabriel",
+			"password": "gabpass"
+		},
 	]
 }

@@ -79,7 +79,7 @@
                         }
                     }
                     
-                    [newUser setObject:[NSNumber numberWithInt:hours] forKey:@"hours"];
+                    [newUser setObject:[NSNumber numberWithInteger:hours] forKey:@"hours"];
                     
                     [self.technicians addObject:newUser];
                 }
@@ -143,7 +143,7 @@
     }
     else
     {
-        NSInteger hours = [technician[@"hours"] intValue];
+        int hours = [technician[@"hours"] intValue];
         
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d h", hours];
         cell.detailTextLabel.textColor = [UIColor blackColor];
@@ -167,19 +167,19 @@
     {
         [self.selectedTechinicians removeObject:self.lastTechnician[@"id"]];
         
-        NSInteger tecHours = [self.lastTechnician[@"hours"] intValue];
-        NSInteger taskHours = [self.task[@"hours"] intValue];
+        int tecHours = [self.lastTechnician[@"hours"] intValue];
+        int taskHours = [self.task[@"hours"] intValue];
         
         tecHours -= taskHours;
         
-        self.lastTechnician[@"hours"] = [NSNumber numberWithInt:tecHours];
+        self.lastTechnician[@"hours"] = [NSNumber numberWithInteger:tecHours];
         self.lastTechnicianCell.detailTextLabel.text = [NSString stringWithFormat:@"%d h", tecHours];
         
         self.lastTechnicianCell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-    NSInteger tecHours = [technician[@"hours"] intValue];
-    NSInteger taskHours = [self.task[@"hours"] intValue];
+    int tecHours = [technician[@"hours"] intValue];
+    int taskHours = [self.task[@"hours"] intValue];
     
     if (cell.accessoryType == UITableViewCellAccessoryCheckmark)
     {

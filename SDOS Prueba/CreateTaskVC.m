@@ -77,11 +77,11 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSInteger lastTaskID = [[defaults objectForKey:@"lastTaskID"] intValue];
+    int lastTaskID = [[defaults objectForKey:@"lastTaskID"] intValue];
     
     NSMutableDictionary *task = [[NSMutableDictionary alloc] init];
     
-    NSInteger taskID = lastTaskID + 1;
+    int taskID = lastTaskID + 1;
     NSString *title = self.titleField.text;
     NSString *type = self.typeField.text;
     NSString *description = self.descriptionArea.text;
@@ -155,7 +155,8 @@
     }
     else
     {
-        return [NSString stringWithFormat:@"%d %@", row + 1, (row == 0?@"hora":@"horas")];
+        int hours = (int)row + 1;
+        return [NSString stringWithFormat:@"%d %@", hours, (row == 0?@"hora":@"horas")];
     }
 }
 
@@ -167,8 +168,9 @@
     }
     if ([self.selectedTextField isEqual:self.durationField])
     {
-        self.durationField.text = [NSString stringWithFormat:@"%d %@", row + 1, (row == 0?@"hora":@"horas")];
-        self.selectedDuration = [NSNumber numberWithInt:row + 1];
+        int hours = (int)row + 1;
+        self.durationField.text = [NSString stringWithFormat:@"%d %@", hours, (row == 0?@"hora":@"horas")];
+        self.selectedDuration = [NSNumber numberWithInt:hours];
     }
     
     [self textFieldValueChanged];

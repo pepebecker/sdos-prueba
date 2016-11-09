@@ -14,7 +14,6 @@
 		B119AD051DCE6C5500409CB1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B119AD031DCE6C5500409CB1 /* LaunchScreen.storyboard */; };
 		B119AD101DCE6C5500409CB1 /* SDOS_PruebaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B119AD0F1DCE6C5500409CB1 /* SDOS_PruebaTests.m */; };
 		B119AD1B1DCE6C5500409CB1 /* SDOS_PruebaUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B119AD1A1DCE6C5500409CB1 /* SDOS_PruebaUITests.m */; };
-		B119AD2C1DCE6CE600409CB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B119AD2A1DCE6CE600409CB1 /* Main.storyboard */; };
 		B1257F971DCE6E050024B4EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1257F961DCE6E050024B4EB /* AppDelegate.m */; };
 		B1257FA81DCE6E670024B4EB /* AdminTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1257F991DCE6E670024B4EB /* AdminTableVC.m */; };
 		B1257FA91DCE6E670024B4EB /* CreateTaskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1257F9B1DCE6E670024B4EB /* CreateTaskVC.m */; };
@@ -25,6 +24,7 @@
 		B1257FAE1DCE6E670024B4EB /* TechnicianSelectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1257FA51DCE6E670024B4EB /* TechnicianSelectionVC.m */; };
 		B1257FAF1DCE6E670024B4EB /* TechnicianTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1257FA71DCE6E670024B4EB /* TechnicianTableVC.m */; };
 		B19E69BD1DCFD9B7007DB781 /* AdminTaskDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = B19E69BC1DCFD9B7007DB781 /* AdminTaskDetails.m */; };
+		B1AC29441DD0A4C800C825F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1AC29421DD0A4C800C825F8 /* Main.storyboard */; };
 		B1E97F781DCE6FD900E1BA24 /* tasks.json in Resources */ = {isa = PBXBuildFile; fileRef = B1E97F761DCE6FD900E1BA24 /* tasks.json */; };
 		B1E97F791DCE6FD900E1BA24 /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = B1E97F771DCE6FD900E1BA24 /* users.json */; };
 		F35641EE76A7301881CEE858 /* libPods-SDOS PruebaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B32F49C23B7725FFCF18843 /* libPods-SDOS PruebaTests.a */; };
@@ -65,7 +65,6 @@
 		B119AD161DCE6C5500409CB1 /* SDOS PruebaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SDOS PruebaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B119AD1A1DCE6C5500409CB1 /* SDOS_PruebaUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDOS_PruebaUITests.m; sourceTree = "<group>"; };
 		B119AD1C1DCE6C5500409CB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B119AD2B1DCE6CE600409CB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "../../SDOS Prueba backup/SDOS Prueba/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		B1257F951DCE6E050024B4EB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B1257F961DCE6E050024B4EB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B1257F981DCE6E670024B4EB /* AdminTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminTableVC.h; sourceTree = "<group>"; };
@@ -87,6 +86,7 @@
 		B19425521DD0157800F0E9B5 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B19E69BB1DCFD9B7007DB781 /* AdminTaskDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdminTaskDetails.h; sourceTree = "<group>"; };
 		B19E69BC1DCFD9B7007DB781 /* AdminTaskDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdminTaskDetails.m; sourceTree = "<group>"; };
+		B1AC29431DD0A4C800C825F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B1E97F761DCE6FD900E1BA24 /* tasks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tasks.json; sourceTree = "<group>"; };
 		B1E97F771DCE6FD900E1BA24 /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
 		BE7D107481220687636B8277 /* Pods-SDOS PruebaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDOS PruebaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDOS PruebaUITests/Pods-SDOS PruebaUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				B1257FA11DCE6E670024B4EB /* ProfileVC.m */,
 				B1257FB01DCE6E790024B4EB /* Admin */,
 				B1257FB11DCE6E880024B4EB /* Technician */,
-				B119AD2A1DCE6CE600409CB1 /* Main.storyboard */,
+				B1AC29421DD0A4C800C825F8 /* Main.storyboard */,
 				B119AD031DCE6C5500409CB1 /* LaunchScreen.storyboard */,
 				B1E97F771DCE6FD900E1BA24 /* users.json */,
 				B1E97F761DCE6FD900E1BA24 /* tasks.json */,
@@ -367,8 +367,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1E97F791DCE6FD900E1BA24 /* users.json in Resources */,
+				B1AC29441DD0A4C800C825F8 /* Main.storyboard in Resources */,
 				B1E97F781DCE6FD900E1BA24 /* tasks.json in Resources */,
-				B119AD2C1DCE6CE600409CB1 /* Main.storyboard in Resources */,
 				B119AD051DCE6C5500409CB1 /* LaunchScreen.storyboard in Resources */,
 				B119AD021DCE6C5500409CB1 /* Assets.xcassets in Resources */,
 			);
@@ -588,10 +588,10 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		B119AD2A1DCE6CE600409CB1 /* Main.storyboard */ = {
+		B1AC29421DD0A4C800C825F8 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B119AD2B1DCE6CE600409CB1 /* Base */,
+				B1AC29431DD0A4C800C825F8 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

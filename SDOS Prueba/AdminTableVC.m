@@ -131,7 +131,7 @@
     }
     else
     {
-        NSInteger hours = [task[@"hours"] intValue];
+        int hours = [task[@"hours"] intValue];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d h", hours];
         cell.detailTextLabel.textColor = [UIColor blackColor];
     }
@@ -191,7 +191,7 @@
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:self.tasks[indexPath.row] forKey:@"task"];
-        [defaults setObject:[NSNumber numberWithInt:indexPath.row] forKey:@"taskIndex"];
+        [defaults setObject:[NSNumber numberWithInteger:indexPath.row] forKey:@"taskIndex"];
         [defaults synchronize];
         
         [self performSegueWithIdentifier:@"showTask" sender:self];

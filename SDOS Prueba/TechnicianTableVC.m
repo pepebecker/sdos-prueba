@@ -129,7 +129,7 @@
     }
     else
     {
-        NSInteger hours = [task[@"hours"] intValue];
+        int hours = [task[@"hours"] intValue];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d h", hours];
         cell.detailTextLabel.textColor = [UIColor blackColor];
     }

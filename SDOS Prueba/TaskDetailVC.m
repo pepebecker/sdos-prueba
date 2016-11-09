@@ -30,7 +30,7 @@
     
     self.typeLabel.text = [self.task objectForKey:@"type"];
     
-    NSInteger hours = [self.task[@"hours"] intValue];
+    int hours = [self.task[@"hours"] intValue];
     NSString *hoursString = (hours == 1?@"hora":@"horas");
     
     self.durationLabel.text = [NSString stringWithFormat:@"%d %@", hours, hoursString];
